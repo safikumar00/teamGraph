@@ -97,7 +97,15 @@ export async function shutdown(): Promise<void> {
 }
 
 // --- Graceful shutdown -------------------------------------------------------
-if (typeof process !== "undefined") {
+// Skip SIGTERM/SIGINT registration in serverless environments (Vercel/Lambda)
+// where process.exit() would prematurely terminate a warm container.
+const isServerless = !!(
+  process.env.VERCEL ||
+  process.env.AWS_LAMBDA_FUNCTION_NAME ||
+  process.env.LAMBDA_TASK_ROOT
+);
+
+if (typeof process !== "undefined" && !isServerless) {
   let shuttingDown = false;
   const handle = async (signal: string) => {
     if (shuttingDown) return;
