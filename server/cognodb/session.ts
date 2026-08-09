@@ -30,7 +30,9 @@ async function runAndClose(
   params: Record<string, unknown>,
 ): Promise<QueryResult> {
   try {
-    return await session.run(cypher, params);
+    const result = await session.run(cypher, params);
+    await result.consume();
+    return result;
   } catch (error) {
     throw toCognodbError(error);
   } finally {

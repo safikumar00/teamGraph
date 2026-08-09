@@ -41,6 +41,7 @@ export interface Backend {
 }
 
 let backend: Backend | null = null;
+let backendInitPromise: Promise<Backend> | null = null;
 
 function buildServices(repo: GraphRepository): BackendServices {
   return {
@@ -62,11 +63,35 @@ export function createBackend(): Backend {
   return backend;
 }
 
-/** Builds the backend and verifies CognoDB connectivity before serving traffic. */
-export async function start(): Promise<Backend> {
+async function buildAndVerifyBackend(): Promise<Backend> {
   const b = createBackend();
   await verifyConnectivity();
   return b;
+}
+
+/**
+ * Builds the backend and verifies CognoDB connectivity once per process.
+ *
+ * This is the safe entry point for serverless/API boundaries: concurrent
+ * callers share the same initialization promise, warm invocations reuse the
+ * cached singleton, and the first request waits for connectivity before any
+ * repository/session access can occur.
+ */
+export async function ensureBackend(): Promise<Backend> {
+  if (backend) return backend;
+  if (!backendInitPromise) {
+    backendInitPromise = buildAndVerifyBackend().catch((error) => {
+      backend = null;
+      backendInitPromise = null;
+      throw error;
+    });
+  }
+  return backendInitPromise;
+}
+
+/** Builds the backend and verifies CognoDB connectivity before serving traffic. */
+export async function start(): Promise<Backend> {
+  return ensureBackend();
 }
 
 /** Returns the bootstrapped backend, building it lazily on first use. */

@@ -1,5 +1,6 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import apiMiddleware from "../server/api-middleware.js";
+import { ensureBackend } from "../server/index.js";
 
 /**
  * Vercel serverless catch-all for all /api/* routes.
@@ -16,5 +17,6 @@ import apiMiddleware from "../server/api-middleware.js";
  * timeouts set in config.ts to prevent stale-socket errors.
  */
 export default async function handler(req: VercelRequest, res: VercelResponse) {
+  await ensureBackend();
   await apiMiddleware(req as any, res as any, () => {});
 }
