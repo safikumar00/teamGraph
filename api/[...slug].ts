@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import apiMiddleware from "../server/api-middleware";
+import apiMiddleware from "../server/api-middleware.js";
 
 /**
  * Vercel serverless catch-all for all /api/* routes.
