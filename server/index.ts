@@ -63,24 +63,17 @@ export function createBackend(): Backend {
   return backend;
 }
 
-async function buildAndVerifyBackend(): Promise<Backend> {
-  const b = createBackend();
-  await verifyConnectivity();
-  return b;
-}
-
 /**
- * Builds the backend and verifies CognoDB connectivity once per process.
+ * Builds the backend once per process.
  *
  * This is the safe entry point for serverless/API boundaries: concurrent
  * callers share the same initialization promise, warm invocations reuse the
- * cached singleton, and the first request waits for connectivity before any
- * repository/session access can occur.
+ * cached singleton.
  */
 export async function ensureBackend(): Promise<Backend> {
   if (backend) return backend;
   if (!backendInitPromise) {
-    backendInitPromise = buildAndVerifyBackend().catch((error) => {
+    backendInitPromise = Promise.resolve().then(() => createBackend()).catch((error) => {
       backend = null;
       backendInitPromise = null;
       throw error;
@@ -91,7 +84,9 @@ export async function ensureBackend(): Promise<Backend> {
 
 /** Builds the backend and verifies CognoDB connectivity before serving traffic. */
 export async function start(): Promise<Backend> {
-  return ensureBackend();
+  const b = await ensureBackend();
+  await verifyConnectivity();
+  return b;
 }
 
 /** Returns the bootstrapped backend, building it lazily on first use. */
