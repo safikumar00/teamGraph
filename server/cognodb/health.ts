@@ -40,8 +40,8 @@ export async function healthCheck(
       connectivity: true,
       database: config?.database,
       serverInfo: {
-        version: info.version,
-        protocolVersion: info.protocolVersion,
+        version: (info as any).version ?? "unknown",
+        protocolVersion: (info as any).protocolVersion ?? 0,
       },
       latencyMs: Date.now() - started,
     };
