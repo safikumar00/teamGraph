@@ -13,6 +13,11 @@ function getRepository() {
   return _repository;
 }
 
+/** Call after closeDriver() in serverless to reset the singleton for the next invocation. */
+export function resetRepository(): void {
+  _repository = null;
+}
+
 function getBody(req: IncomingMessage): Promise<any> {
   return new Promise((resolve) => {
     let body = "";

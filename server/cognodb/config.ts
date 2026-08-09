@@ -20,12 +20,20 @@ export interface CognodbConfig {
   loggingLevel: "error" | "warn" | "info" | "debug";
 }
 
+// In Vercel/Lambda, each invocation is isolated — a large pool wastes resources
+// and causes "Connection was closed by server" on cold starts.
+const isServerless = !!(
+  process.env.VERCEL ||
+  process.env.AWS_LAMBDA_FUNCTION_NAME ||
+  process.env.LAMBDA_TASK_ROOT
+);
+
 const DEFAULTS: Omit<CognodbConfig, "uri" | "username" | "password"> = {
   database: "neo4j",
-  maxConnectionPoolSize: 50,
-  connectionAcquisitionTimeoutMs: 60_000,
-  maxConnectionLifetimeMs: 3_600_000,
-  connectionTimeoutMs: 30_000,
+  maxConnectionPoolSize: isServerless ? 1 : 50,
+  connectionAcquisitionTimeoutMs: isServerless ? 8_000 : 60_000,
+  maxConnectionLifetimeMs: isServerless ? 300_000 : 3_600_000,
+  connectionTimeoutMs: isServerless ? 8_000 : 30_000,
   loggingLevel: "warn",
 };
 

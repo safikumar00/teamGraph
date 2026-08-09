@@ -1,19 +1,28 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import apiMiddleware from "../server/api-middleware.js";
+import apiMiddleware, { resetRepository } from "../server/api-middleware.js";
+import { closeDriver } from "../server/cognodb/index.js";
 
 /**
  * Vercel serverless catch-all for all /api/* routes.
  *
- * Static import (not dynamic) ensures @vercel/node can trace and bundle all
- * transitive dependencies (neo4j-driver, CognoGraphRepository, etc.) at
- * build time rather than failing at runtime with FUNCTION_INVOCATION_FAILED.
+ * The bolt connection MUST be closed after each Lambda invocation.
+ * In Vercel/Lambda, the container may be reused but the server-side bolt
+ * socket has already been closed by CognoDB — leaving the driver open causes
+ * "Connection was closed by server" on warm restarts.
  *
- * The repository inside api-middleware is lazily initialised on first request,
- * so a missing env var returns a structured JSON 500 rather than crashing
- * the function before the handler body executes.
+ * Closing the driver + resetting the repository singleton ensures each
+ * invocation gets a fresh connection.
  */
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  await apiMiddleware(req as any, res as any, () => {
-    // no-op: all /api/* routes are handled inside apiMiddleware
-  });
+  try {
+    await apiMiddleware(req as any, res as any, () => {});
+  } finally {
+    // Release the bolt socket and reset singleton so next invocation reconnects cleanly.
+    try {
+      await closeDriver();
+    } catch {
+      // Ignore close errors — response already sent.
+    }
+    resetRepository();
+  }
 }
