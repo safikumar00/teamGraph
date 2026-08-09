@@ -58,8 +58,11 @@ export default async function apiMiddleware(req: IncomingMessage, res: ServerRes
     // GET /api/health
     if (path === "/api/health" && method === "GET") {
       try {
-        const { getHealth } = await import("./index.js");
-        const health = await getHealth();
+        // Call getRepository() first to ensure the driver is initialised via
+        // the same singleton path as all other routes.
+        getRepository();
+        const { healthCheck } = await import("./cognodb/index.js");
+        const health = await healthCheck();
         return sendJSON(res, health);
       } catch (err: any) {
         return sendJSON(res, { status: "error", error: err?.message || String(err) }, 503);
