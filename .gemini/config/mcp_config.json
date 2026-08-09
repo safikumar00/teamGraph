@@ -1,0 +1,7 @@
+{
+    "mcpServers": {
+        "cognodb": {
+            "serverUrl": "https://mcp.cognodb.com/mcp/db-9bad1797/eyJpIjoiZGItOWJhZDE3OTciLCJlIjoxNzkzOTQ4MjE5fQ.-9Z87XB0QMrAdl6GsyuWA5hfGPJsF-FxxiMLLHKnZuQ"
+        }
+    }
+}
