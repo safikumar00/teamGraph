@@ -1,6 +1,6 @@
 /** CognoDB connection layer barrel. */
-export * from "./config";
-export * from "./errors";
-export * from "./driver";
-export * from "./session";
-export * from "./health";
+export * from "./config.js";
+export * from "./errors.js";
+export * from "./driver.js";
+export * from "./session.js";
+export * from "./health.js";

@@ -1,5 +1,5 @@
-import type { GraphRepository } from "../repositories";
-import type { ActivityEvent, OrgStats } from "../dto";
+import type { GraphRepository } from "../repositories/index.js";
+import type { ActivityEvent, OrgStats } from "../dto/index.js";
 
 /** Dashboard surface: aggregate stats + the recent activity feed. */
 export class DashboardService {

@@ -1,6 +1,6 @@
-import type { GraphRepository } from "../repositories";
-import type { EntityRef, GraphOptions } from "../types";
-import type { GraphSnapshot, Relationship, SearchResult } from "../dto";
+import type { GraphRepository } from "../repositories/index.js";
+import type { EntityRef, GraphOptions } from "../types.js";
+import type { GraphSnapshot, Relationship, SearchResult } from "../dto/index.js";
 
 /**
  * Graph Explorer service. Thin orchestration over the repository contract —

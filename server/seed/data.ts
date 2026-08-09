@@ -1,4 +1,4 @@
-import type { SeedStep } from "./index";
+import type { SeedStep } from "./index.js";
 
 // 7 Clients
 export const CLIENTS = [

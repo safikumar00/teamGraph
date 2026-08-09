@@ -1,5 +1,5 @@
-import { closeDriver, initDriver, loadConfig } from "../cognodb";
-import { getSchemaSteps, SeedRunner } from "./index";
+import { closeDriver, initDriver, loadConfig } from "../cognodb/index.js";
+import { getSchemaSteps, SeedRunner } from "./index.js";
 
 /**
  * Standalone schema bootstrap entrypoint.

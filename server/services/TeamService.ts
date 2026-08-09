@@ -1,5 +1,5 @@
-import type { GraphRepository } from "../repositories";
-import type { Relationship, Team } from "../dto";
+import type { GraphRepository } from "../repositories/index.js";
+import type { Relationship, Team } from "../dto/index.js";
 
 /** Team surface: list, detail, and a team's collaboration relationships. */
 export class TeamService {

@@ -1,4 +1,4 @@
-import type { EntityType } from "../types";
+import type { EntityType } from "../types.js";
 
 /**
  * Cypher for the remaining entity surfaces (teams, skills, technologies,

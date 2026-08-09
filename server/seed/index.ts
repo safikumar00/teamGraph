@@ -1,4 +1,4 @@
-import { runWrite, type CognodbConfig } from "../cognodb";
+import { runWrite, type CognodbConfig } from "../cognodb/index.js";
 
 /**
  * TeamGraph CognoDB schema (Phase 2).
@@ -118,7 +118,7 @@ export function getSchemaSteps(): readonly SeedStep[] {
   return SCHEMA_STEPS;
 }
 
-import { buildDataSeedSteps } from "./data";
+import { buildDataSeedSteps } from "./data.js";
 
 /**
  * Data seed steps. Phase 3 populates this with the realistic company graph.

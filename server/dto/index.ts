@@ -5,7 +5,7 @@
  * frontend contract (src/data/types.ts) field-for-field so the repository swap
  * requires no UI changes.
  */
-import type { EntityType, EntityRef, RelationshipType } from "../types";
+import type { EntityType, EntityRef, RelationshipType } from "../types.js";
 
 export type Seniority = "Junior" | "Mid" | "Senior" | "Staff" | "Principal";
 export type ProjectStatus = "Active" | "Planning" | "At Risk" | "Completed" | "On Hold";

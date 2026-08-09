@@ -1,4 +1,4 @@
-import type { GraphNode, GraphSnapshot, GraphEdge } from "../dto";
+import type { GraphNode, GraphSnapshot, GraphEdge } from "../dto/index.js";
 
 /**
  * Deterministic radial layout transform.

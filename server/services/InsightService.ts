@@ -1,5 +1,5 @@
-import type { GraphRepository } from "../repositories";
-import type { InsightCard } from "../dto";
+import type { GraphRepository } from "../repositories/index.js";
+import type { InsightCard } from "../dto/index.js";
 
 /**
  * Insights surface. Composition of insight cards lives in the mapper composer;

@@ -3,8 +3,8 @@ import neo4j, {
   type QueryResult,
   type Session,
 } from "neo4j-driver";
-import { getDriver } from "./driver";
-import { toCognodbError } from "./errors";
+import { getDriver } from "./driver.js";
+import { toCognodbError } from "./errors.js";
 
 /**
  * Session factory + transaction helpers.

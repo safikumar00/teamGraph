@@ -1,5 +1,5 @@
-import { closeDriver, initDriver, loadConfig } from "../cognodb";
-import { CognoGraphRepository } from "../repositories/CognoGraphRepository";
+import { closeDriver, initDriver, loadConfig } from "../cognodb/index.js";
+import { CognoGraphRepository } from "../repositories/CognoGraphRepository.js";
 
 async function main(): Promise<void> {
   const config = loadConfig();

@@ -1,4 +1,4 @@
-import { ConfigurationError } from "./errors";
+import { ConfigurationError } from "./errors.js";
 
 /**
  * Strongly-typed, validated CognoDB connection configuration.

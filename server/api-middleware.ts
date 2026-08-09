@@ -1,4 +1,4 @@
-import { createCognodbRepository } from "./index";
+import { createCognodbRepository } from "./index.js";
 import type { IncomingMessage, ServerResponse } from "http";
 
 // Lazily initialised — created on first request, not at module load time.
@@ -53,7 +53,7 @@ export default async function apiMiddleware(req: IncomingMessage, res: ServerRes
     // GET /api/health
     if (path === "/api/health" && method === "GET") {
       try {
-        const { getHealth } = await import("./index");
+        const { getHealth } = await import("./index.js");
         const health = await getHealth();
         return sendJSON(res, health);
       } catch (err: any) {

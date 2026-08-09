@@ -12,13 +12,13 @@ import type {
   Skill,
   Team,
   Technology,
-} from "../dto";
+} from "../dto/index.js";
 import type {
   EmployeeFilters,
   EntityRef,
   GraphOptions,
   ProjectFilters,
-} from "../types";
+} from "../types.js";
 
 /**
  * The repository contract the frontend already consumes (src/data/repository.ts).

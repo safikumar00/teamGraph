@@ -1,5 +1,5 @@
 import type { Record as Neo4jRecord } from "neo4j-driver";
-import type { InsightCard } from "../dto";
+import type { InsightCard } from "../dto/index.js";
 
 /**
  * Composes raw insight-query records into the public `InsightCard` DTOs.

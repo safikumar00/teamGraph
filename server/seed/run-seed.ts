@@ -1,5 +1,5 @@
-import { closeDriver, initDriver, loadConfig, runRead } from "../cognodb";
-import { SeedRunner } from "./index";
+import { closeDriver, initDriver, loadConfig, runRead } from "../cognodb/index.js";
+import { SeedRunner } from "./index.js";
 
 async function main(): Promise<void> {
   const config = loadConfig();

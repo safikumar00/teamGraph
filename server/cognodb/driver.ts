@@ -1,6 +1,6 @@
 import neo4j, { type Config, type Driver } from "neo4j-driver";
-import type { CognodbConfig } from "./config";
-import { ConnectionError, toCognodbError } from "./errors";
+import type { CognodbConfig } from "./config.js";
+import { ConnectionError, toCognodbError } from "./errors.js";
 
 /**
  * Singleton Neo4j driver lifecycle.

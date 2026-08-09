@@ -1,6 +1,6 @@
-import type { GraphRepository } from "../repositories";
-import type { ProjectFilters } from "../types";
-import type { Project, Relationship } from "../dto";
+import type { GraphRepository } from "../repositories/index.js";
+import type { ProjectFilters } from "../types.js";
+import type { Project, Relationship } from "../dto/index.js";
 
 /** Project surface: list, detail, dependencies, and project relationships. */
 export class ProjectService {

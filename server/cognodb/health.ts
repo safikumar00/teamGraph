@@ -1,7 +1,7 @@
 import type { Driver } from "neo4j-driver";
-import { type CognodbConfig } from "./config";
-import { getDriver, hasDriver } from "./driver";
-import { ConnectionError, toCognodbError } from "./errors";
+import { type CognodbConfig } from "./config.js";
+import { getDriver, hasDriver } from "./driver.js";
+import { ConnectionError, toCognodbError } from "./errors.js";
 
 export interface HealthStatus {
   status: "ok" | "degraded" | "down";

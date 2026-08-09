@@ -1,7 +1,7 @@
 /** Query layer barrel. Cypher strings only — no Cypher lives outside this folder. */
-export * from "./employee";
-export * from "./project";
-export * from "./graph";
-export * from "./dashboard";
-export * from "./insights";
-export * from "./misc";
+export * from "./employee.js";
+export * from "./project.js";
+export * from "./graph.js";
+export * from "./dashboard.js";
+export * from "./insights.js";
+export * from "./misc.js";

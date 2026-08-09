@@ -1,5 +1,5 @@
-import type { CognodbConfig } from "../cognodb";
-import { runRead } from "../cognodb";
+import type { CognodbConfig } from "../cognodb/index.js";
+import { runRead } from "../cognodb/index.js";
 import {
   composeInsights,
   computeRadialLayout,
@@ -15,7 +15,7 @@ import {
   recordToSkill,
   recordToTeam,
   recordToTechnology,
-} from "../mapper";
+} from "../mapper/index.js";
 import {
   getClient,
   getEmployee,
@@ -43,13 +43,13 @@ import {
   SEARCHABLE_TYPES,
   topTechnology,
   knowledgeSpread,
-} from "../queries";
+} from "../queries/index.js";
 import {
   employeeDepartments,
   orgCounts,
   relationshipsFor,
   DEFAULT_GRAPH_TYPES,
-} from "../queries";
+} from "../queries/index.js";
 import type {
   ActivityEvent,
   Certification,
@@ -64,14 +64,14 @@ import type {
   Skill,
   Team,
   Technology,
-} from "../dto";
+} from "../dto/index.js";
 import type {
   EmployeeFilters,
   EntityRef,
   GraphOptions,
   ProjectFilters,
-} from "../types";
-import type { GraphRepository } from "./GraphRepository";
+} from "../types.js";
+import type { GraphRepository } from "./GraphRepository.js";
 
 function toNum(val: unknown): number {
   if (val === null || val === undefined) return 0;

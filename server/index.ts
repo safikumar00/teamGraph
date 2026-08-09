@@ -6,8 +6,8 @@ import {
   verifyConnectivity,
   type CognodbConfig,
   type HealthStatus,
-} from "./cognodb";
-import { CognoGraphRepository, type GraphRepository } from "./repositories";
+} from "./cognodb/index.js";
+import { CognoGraphRepository, type GraphRepository } from "./repositories/index.js";
 import {
   DashboardService,
   EmployeeService,
@@ -15,7 +15,7 @@ import {
   InsightService,
   ProjectService,
   TeamService,
-} from "./services";
+} from "./services/index.js";
 
 /**
  * Composition root + process lifecycle for the TeamGraph backend.

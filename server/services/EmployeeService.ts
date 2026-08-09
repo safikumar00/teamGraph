@@ -1,6 +1,6 @@
-import type { GraphRepository } from "../repositories";
-import type { EmployeeFilters } from "../types";
-import type { Employee, Relationship } from "../dto";
+import type { GraphRepository } from "../repositories/index.js";
+import type { EmployeeFilters } from "../types.js";
+import type { Employee, Relationship } from "../dto/index.js";
 
 /** Employee surface: list, detail, and the employee's graph relationships. */
 export class EmployeeService {

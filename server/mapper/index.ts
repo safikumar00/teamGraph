@@ -11,13 +11,13 @@ import type {
   Skill,
   Team,
   Technology,
-} from "../dto";
+} from "../dto/index.js";
 import type {
   EntityType,
   GraphRelationshipType,
   RelationshipType,
-} from "../types";
-import { MappingError } from "../cognodb/errors";
+} from "../types.js";
+import { MappingError } from "../cognodb/errors.js";
 
 /**
  * Record → DTO mappers. Neo4j records are converted here into the public DTOs
@@ -241,5 +241,5 @@ export function recordToSearchResult(record: Neo4jRecord): SearchResult {
   };
 }
 
-export { computeRadialLayout } from "./graph-layout";
-export { composeInsights, type InsightRecords } from "./insight-composer";
+export { computeRadialLayout } from "./graph-layout.js";
+export { composeInsights, type InsightRecords } from "./insight-composer.js";
